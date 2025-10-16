@@ -14,8 +14,6 @@
 </template>
 
 <script setup>
-import '@n8n/chat/style.css';
-import { createChat } from '@n8n/chat';
 
 // const lists = [{ nameTh: 'โรคซึมเศร้า ', nameEn: 'Depression' }, { nameTh: 'โรคสองขั้ว/ 2 บุคลิก ', nameEn: 'Bipolar Disorder' }, { nameTh: 'โรคจิตเภท ', nameEn: 'Schizophrenia' }];
 const lists = ref([]);
@@ -23,25 +21,7 @@ const route = useRoute()
 
 onMounted(async () => {
   lists.value = await fetch("https://n8n.kisra.co.th/webhook/437aa980-058c-4523-b395-cdeb8c280c4c").then((res) => res.json());
-    createChat({
-      webhookUrl:
-        "https://n8n.kisra.co.th/webhook/f0df6569-91e0-4da7-94e9-e3915e4c9649/chat",
-      initialMessages: [
-        // `สวัสดีครับ คุณ ${user?.name} 👋`,
-        "ผมคือ MOD AI ผู้ช่วยเสมือนของระบบ Social Listening มีอะไรให้ผมช่วยได้บ้างครับ?",
-      ],
-      i18n: {
-        en: {
-          title: "💬 Chat with My Mind Mood",
-          subtitle: "ผมคือ My Mind Mood",
-          inputPlaceholder: "พิมพ์ข้อความของคุณ...",
-          getStarted: "สวัสดีครับ! 👋",
-          startMessage: "เริ่มแชทกับเรา เราพร้อมช่วยเหลือคุณตลอด 24 ชั่วโมง",
-          footer: "ขับเคลื่อนโดย MOD AI",
-          closeButtonTooltip: "ปิด",
-        },
-      },
-    });
+
 });
 
 const goto = (topicId) => {
