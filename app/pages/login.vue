@@ -1,30 +1,29 @@
-<script setup lang="ts">
+<script setup>
 const { status, signIn } = useAuth()
 const route = useRoute()
-const callbackUrl = computed(() => (route.query.callbackUrl as string) || '/')
-const onGoogle = () => signIn('google', { callbackUrl: callbackUrl.value })
+const router = useRouter();
+const onGoogle = async () => {
+  try {
+    const res = await fetch('https://n8n.kisra.co.th/webhook/dfaa7d82-f83b-4eb7-89eb-81b4b900305c')
+    const data = await res.json()
+    if (data.oauth_url) {
+      window.location.href = data.oauth_url
+    }
+  } catch (error) {
+    console.error('Google login error:', error)
+  }
+}
+
+onMounted(async () => {
+    if(useCookie('auth').value?.user_id){
+        navigateTo(`/`);
+    }
+});
+
+
 </script>
 
 <template>
-  <!-- <UContainer class="py-20">
-    <div class="mx-auto max-w-sm">
-      <UCard>
-        <template #header>
-          <div class="text-center">
-            <h1 class="text-xl font-semibold">Sign in</h1>
-            <p class="text-gray-500 mt-1">Continue with your Google account</p>
-          </div>
-        </template>
-
-<div class="space-y-3">
-  <UButton icon="i-logos-google-icon" color="white" variant="solid" class="w-full" @click="onGoogle">
-    Continue with Google
-  </UButton>
-  <p v-if="status==='authenticated'" class="text-green-600 text-sm text-center">Already signed in</p>
-</div>
-</UCard>
-</div>
-</UContainer> -->
   <div class="h-[100vh] flex items-center justify-center">
     <div class="bg-white w-[338px] h-[329px] flex flex-col justify-center text-black rounded-xl p-5 gap-5">
       <div class="text-2xl font-semibold">Welcome !</div>
