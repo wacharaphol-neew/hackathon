@@ -2,8 +2,8 @@
     <div class="h-screen p-10">
         <div class="content">
             <div class="flex w-full">
-                <div class="w-1/2">89</div>
-                <div class="w-1/2 text-2xl font-extrabold pt-5">อารมณ์ดีมาก</div>
+                <div class="w-1/3">89</div>
+                <div class="w-2/3 text-2xl font-extrabold pt-5 text-right">{{ scores?.result }}</div>
             </div>
             <img src="../assets/images/happyWoman.png" alt="">
         </div>
@@ -21,7 +21,7 @@
         <div class="mt-5 flex flex-col gap-2" v-for="(list, index) in lists" :key="index">
             <div class="text-center">{{ list.title }}</div>
             <template>
-                <UProgress v-model="list.value" />
+                <UProgress v-model="list.score" />
             </template>
             <div class="flex justify-between">
                 <div>ปกติ</div>
@@ -42,8 +42,21 @@
 </template>
 
 <script setup>
-const lists = ref([{ title: 'อารมณ์และความรู้สึกเศร้า', value: 50 }, { title: 'พลังงานและแรงจูงใจ', value: 75 }])
 const value = ref(50)
+const auth = ref(useCookie('auth').value.user_id);
+const scores = ref(await fetch("https://n8n.kisra.co.th/webhook/55675f5e-0ae0-49ed-b9fa-eaaa80b8b382?analysis_id=aedf8c63-524e-4517-9b7b-a89f6db67642").then((res) => res.json()))
+const lists = ref(scores.value.level)
+
+onMounted(async () => {
+// console.log("useCookie('auth')",useCookie('auth').value.user_id);
+console.log("auth",auth.value);
+//   score.value = await fetch(`https://n8n.kisra.co.th/webhook/55675f5e-0ae0-49ed-b9fa-eaaa80b8b382?analysis_id=${auth}`).then((res) => res.json());
+
+//   scores.value = await fetch("https://n8n.kisra.co.th/webhook/55675f5e-0ae0-49ed-b9fa-eaaa80b8b382?analysis_id=aedf8c63-524e-4517-9b7b-a89f6db67642").then((res) => res.json());
+//   lists.value = scores.value.level
+//   console.log("score.value ",scores.value );
+//   console.log("score.value ",scores.value.result );
+});
 
 </script>
 
