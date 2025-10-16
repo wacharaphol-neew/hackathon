@@ -25,6 +25,7 @@ onMounted(async () => {
 
 <template>
   <div class="h-[100vh] flex items-center justify-center">
+    <img src="../assets/images/login.png" alt="">
     <div class="bg-white w-[338px] h-[329px] flex flex-col justify-center text-black rounded-xl p-5 gap-5">
       <div class="text-2xl font-semibold">Welcome !</div>
       <div class="text-[12px] text-[#666666]">
@@ -39,3 +40,14 @@ onMounted(async () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+/* body {
+  background-image: url('../assets/images/login.png');
+} */
+
+ img{
+  position: absolute;
+  z-index: -1;
+ }
+</style>

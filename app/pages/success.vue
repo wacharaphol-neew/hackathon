@@ -1,5 +1,6 @@
 <template>
-    <div class="h-[100vh] bg-green-400 flex items-center justify-center">
+    <div class="h-[100vh] flex items-center justify-center">
+        <img src="../assets/images/login.png" alt="">
         <div
             class="bg-white w-[338px] h-[230px] flex flex-col justify-center items-center text-black rounded-xl p-5 gap-5">
             <img src="../assets/images/success.png" alt="">
@@ -23,4 +24,9 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+ img{
+  position: absolute;
+  z-index: -1;
+ }
+</style>
