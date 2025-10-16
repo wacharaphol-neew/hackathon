@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center  h-screen p-10 flex-col">
+  <div class="flex items-center h-screen p-10 flex-col">
     <h1 class="text-3xl font-extrabold">เลือกหัวข้อทดสอบ</h1>
 
     <div class="gap-5 mt-10 w-full">
